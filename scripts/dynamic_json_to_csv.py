@@ -6,7 +6,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-f = open('wikiyes.csv', 'r')
+
 w = open('wikiyeschinese.csv','w')
 keys = ["City","Status","assignee","Type","name_en","name_zh","OSM Search","GM Search","osm_type","osm_id","GM locatio","OSM location","source","lon","lat","custom_name","comments","wikidata","wikipedia"]
 
