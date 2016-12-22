@@ -70,9 +70,9 @@ Each of these contain the translations for corresponding language code
 
 #### wiki:logs
 
-- languageCode Present: Translation for this language code present in wikidata
-- No languageCode label: Translation for this language code not present in wikidata
-- Wiki API Error: API to query wikidata failed
-- No wikidata: None of `osm:wikidata` or `wiki:wikidata` present
-- Wikipedia error: API to query wikipedia failed
-- No wikidata / wikipedia: None of osm:wikidata or osm:wikipedia present
+- `languageCode Present`: Translation for this language code present in wikidata
+- `No languageCode label`: Translation for this language code not present in wikidata
+- `Wiki API Error`: API to query wikidata failed
+- `No wikidata`: None of `osm:wikidata` or `wiki:wikidata` present
+- `Wikipedia error`: API to query wikipedia failed
+- `No wikidata / wikipedia`: None of osm:wikidata or osm:wikipedia present
