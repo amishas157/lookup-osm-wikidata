@@ -20,10 +20,22 @@ for row in reader:
 fr.close()
 fw.close()
 
+count = 0
+
+tags = []
+
+for arg in sys.argv:
+    if count != 0:
+        tags.append(sys.argv[count].strip())
+    count += 1
+
 fr = open('input.json','r')
 fw = open('output.json','w')
 
-fieldnames.extend(["osm:logs", "osm:wikidata", "osm:wikipedia", "osm:name", "osm:name:zh", "osm:name:en", "osm:geometry"]) 
+fieldnames.extend(["osm:logs", "osm:wikidata", "osm:wikipedia", "osm:name", "osm:name:en", "osm:geometry"])
+
+for tag in tags:
+    fieldnames.extend(['osm:'+tag])
 
 count = 0;
 
@@ -47,11 +59,12 @@ for line in fr:
                 l["osm:name"] = response["properties"]["name"]
             if 'name:en' in response["properties"]:
                 l["osm:name:en"] = response["properties"]["name:en"]
-            if 'name:zh' in response["properties"]:
-                l["osm:name:zh"] = response["properties"]["name:zh"]
             if 'geometry' in response and 'coordinates' in response["geometry"]:
                 l["osm:geometry"] = response["geometry"]
 
+            for tag in tags:
+                if tag in response["properties"]:
+                    l["osm:"+tag] = response["properties"][tag]
         else:
             l["osm:logs"] = "Dynamosm request failure"
     else:
@@ -80,4 +93,3 @@ for line in fr:
 
 fr.close()
 fw.close()
-        
