@@ -23,16 +23,27 @@ for row in reader:
 fr.close()
 fw.close()
 
+count = 0
+
+labels = []
+
+for arg in sys.argv:
+    if count != 0:
+        labels.append(sys.argv[count].strip())
+    count += 1
+
+
 def hasWikidata( wikidataId, l ):
     responsewiki = requests.get("https://www.wikidata.org/w/api.php?action=wbgetentities&ids=" + wikidataId + "&format=json")
     datawiki = responsewiki.json()
-    try:
-        labels = datawiki["entities"][wikidataId]["labels"]["zh"]["value"]
-        l['wiki:label:zh'] = labels
-        l['wiki:logs'] = "Success"
-    except:
-        l['wiki:logs'] = "No chinese label"
 
+    for label in labels:
+        try:
+            wikilabels = datawiki["entities"][wikidataId]["labels"][label]["value"]
+            l['wiki:label:'+label] = wikilabels
+            l['wiki:logs'] = label + " Present,"
+        except:
+            l['wiki:logs'] += "No " + label +  " label,"
     try:
         l['wiki:label:en'] = datawiki["entities"][wikidataId]["labels"]["en"]["value"]
     except:
@@ -63,7 +74,10 @@ def hasWikidata( wikidataId, l ):
 fr = open('output.json','r')
 fw = open('finalOutput.json','w')
 count = 0
-fieldnames.extend(["wiki:logs", "wiki:wikidata", "wiki:label:zh", "wiki:label:en", "wiki:wikipedia:en", "wiki:Distance"]) 
+fieldnames.extend(["wiki:logs", "wiki:wikidata", "wiki:label:en", "wiki:wikipedia:en", "wiki:Distance"])
+for label in labels:
+    fieldnames.extend(['wiki:label:'+label])
+
 for line in fr:
     count = count + 1
     l = json.loads(line)
