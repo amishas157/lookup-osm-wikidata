@@ -1,12 +1,11 @@
 # osm-wikidata
-This tool helps in finding various language translations of a osm feature from its corresponding wikidata item, given its feature ID and feature Type. 
-
-### Input 
-input.csv - A CSV of osm features having [osm_id](http://wiki.openstreetmap.org/wiki/ID) and [osm_type](https://wiki.openstreetmap.org/wiki/Elements)
+This tool helps in finding various language translations of a osm feature from its corresponding wikidata item, given its feature [ID](http://wiki.openstreetmap.org/wiki/ID) and feature [Type](https://wiki.openstreetmap.org/wiki/Elements). 
 
 ## How it works
 
- ### Input
+### OSM
+
+#### Input
  A csv with columns `osm_id, osm_type` present in it.
 
 Script `osm.py` queries Mapbox api-dynamosm and fetches the following properties linked to osm feature.
@@ -27,7 +26,7 @@ Example:
 
 `python osm.py highway osm:version`
 
-### Output
+#### Output
 
 Outputs a csv file called `output.csv` in which it appends the following columns to `input.csv`
 
