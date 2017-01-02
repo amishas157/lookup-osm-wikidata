@@ -13,7 +13,6 @@ fw = open('output.json', 'w')
 
 line = fr.readline()
 fieldnames = line.split(',')
-fieldnames.pop() #remove the end \n element
 
 reader = csv.DictReader( fr, fieldnames)
 for row in reader:
