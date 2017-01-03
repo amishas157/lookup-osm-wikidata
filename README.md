@@ -1,4 +1,6 @@
-# osm-wikidata
+# lookup-osm-wikidata
+This tool helps in finding various language translations of a osm feature from its corresponding wikidata item, given its feature [ID](http://wiki.openstreetmap.org/wiki/ID) and feature [Type](https://wiki.openstreetmap.org/wiki/Elements). 
+
 
 This repository has two scripts that help matching OSM features to Wikidata, and get metadata like translations from Wikidata API.
 
