@@ -14,6 +14,11 @@ fw = open('output.json', 'w')
 line = fr.readline()
 fieldnames = line.split(',')
 
+count = 0
+for field in fieldnames:
+    fieldnames[count] = fieldnames[count].rstrip()
+    count += 1
+
 reader = csv.DictReader( fr, fieldnames)
 for row in reader:
     json.dump(row, fw)
