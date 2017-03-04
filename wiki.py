@@ -41,11 +41,12 @@ def hasWikidata( wikidataId, l ):
     responsewiki = requests.get("https://www.wikidata.org/w/api.php?action=wbgetentities&ids=" + wikidataId + "&format=json")
     datawiki = responsewiki.json()
 
+    l['wiki:logs'] = ''
     for label in labels:
         try:
             wikilabels = datawiki["entities"][wikidataId]["labels"][label]["value"]
             l['wiki:label:'+label] = wikilabels
-            l['wiki:logs'] = label + " Present,"
+            l['wiki:logs'] += label + " Present,"
         except:
             l['wiki:logs'] += "No " + label +  " label,"
     try:
