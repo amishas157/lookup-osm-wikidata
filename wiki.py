@@ -44,6 +44,7 @@ def hasWikidata( wikidataId, l ):
     l['wiki:logs'] = ''
     for label in labels:
         try:
+            l['wiki:wikidata'] = wikidataId
             wikilabels = datawiki["entities"][wikidataId]["labels"][label]["value"]
             l['wiki:label:'+label] = wikilabels
             l['wiki:logs'] += label + " Present,"
