@@ -42,6 +42,8 @@ def hasWikidata( wikidataId, l ):
     datawiki = responsewiki.json()
 
     l['wiki:logs'] = ''
+
+    # Write labels in queried language codes
     for label in labels:
         try:
             l['wiki:wikidata'] = wikidataId
@@ -50,15 +52,20 @@ def hasWikidata( wikidataId, l ):
             l['wiki:logs'] += label + " Present,"
         except:
             l['wiki:logs'] += "No " + label +  " label,"
+
+    # Write English label
     try:
         l['wiki:label:en'] = datawiki["entities"][wikidataId]["labels"]["en"]["value"]
     except:
         l['wiki:label:en'] = ""
+
+    # Write English Wikipedia title
     try:
         l['wiki:wikipedia:en'] = datawiki["entities"][wikidataId]["sitelinks"]["enwiki"]["title"]
     except:
         l['wiki:wikipedia:en'] = ""
 
+    # Calculate distance in Km between Wikidata coordinate and OSM coordinate
     try:
         latitude = datawiki["entities"][wikidataId]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["latitude"]
         longitude = datawiki["entities"][wikidataId]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["longitude"]
