@@ -1,5 +1,5 @@
 # lookup-osm-wikidata
-This tool helps in finding various language translations of a osm feature from its corresponding wikidata item, given its feature [ID](http://wiki.openstreetmap.org/wiki/ID) and feature [Type](https://wiki.openstreetmap.org/wiki/Elements). 
+This tool helps in finding various language translations of a osm feature from its corresponding wikidata item, given its feature [ID](http://wiki.openstreetmap.org/wiki/ID) and feature [Type](https://wiki.openstreetmap.org/wiki/Elements).
 
 
 This repository has two scripts that help matching OSM features to Wikidata, and get metadata like translations from Wikidata API.
@@ -14,6 +14,9 @@ osm.py queries Mapbox's Dynamosm API to fetch the following properties for an OS
 - wikipedia - Wikipedia reference of the feature.
 - geometry
 - optional properties - script can return additional properties from osm, required by user.
+
+**Usage**
+`python osm.py input.csv highway`
 
 #### Input
 
@@ -61,5 +64,3 @@ Each of these contain the translations for corresponding language code
 
 #### Example
 `python wiki.py zh zh-hans`
-
-

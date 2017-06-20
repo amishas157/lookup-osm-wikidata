@@ -110,7 +110,7 @@ for line in fr:
     else:
         l['wiki:logs'] = "No wikidata / wikipedia"
     fw.write(json.dumps(l) + '\n')
-    print count
+    print count , l
 
 fr.close()
 fw.close()

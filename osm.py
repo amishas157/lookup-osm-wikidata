@@ -5,8 +5,11 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-fr = open('input.csv', 'r')
-fw = open('input.json', 'w')
+# Usage
+# python osm.py input.csv
+
+fr = open(sys.argv[1], 'r')
+fw = open('osm-tmp.json', 'w')
 
 line = fr.readline()
 fieldnames = line.split(',')
@@ -26,7 +29,7 @@ fw.close()
 
 count = 0
 
-tags = []
+tags = ["highway","tourism","amenity","historic","leisure","railway","shop","building","place","office","public_transport"]
 
 for arg in sys.argv:
     if count != 0:
@@ -79,8 +82,8 @@ for line in fr:
 fr.close()
 fw.close()
 
-fr = open('output.json','r')
-fw = open('output.csv','w')
+fr = open('osm-tmp.json','r')
+fw = open('osm-' + sys.argv[1],'w')
 
 csvwriter = csv.writer(fw)
 fieldnames.append('')
