@@ -74,6 +74,15 @@ def hasWikidata( wikidataId, l ):
         l['wiki:Distance'] = distance
     except Exception as e:
         l['wiki:Distance'] = ""
+
+        # Write instance_of property for the item
+    try:
+        instance_of_qid = datawiki["entities"][wikidataId]["claims"]["P31"][0]["mainsnak"]["datavalue"]["value"]["id"]
+        instance_of_qid_item = requests.get("https://www.wikidata.org/w/api.php?action=wbgetentities&ids=" + instance_of_qid + "&format=json").json()
+        l['wiki:Instance_of'] = instance_of_qid_item["entities"][instance_of_qid]["labels"]["en"]["value"]
+    except:
+        l['wiki:Instance_of'] = ''
+
     return l
 
 
