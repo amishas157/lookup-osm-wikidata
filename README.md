@@ -30,6 +30,9 @@ The CSV has the following log information that might be useful to debug:
 - `Dynamosm request failure`: API to query osm failed
 - `No OSM Id/ Type`: Either of osm_id or osm_type not present in input
 
+#### Example syntax
+`python osm.py name:zh name:es postal_code population`
+
 ## wiki.py
 
 `wiki.py` queries wikipedia API to fetch wikidata ID for those items which don't have `osm:wikidata`. Then it queries wikidata API to fetch required language translations.
