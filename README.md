@@ -4,7 +4,7 @@ This tool helps in finding various language translations of a osm feature from i
 ## Setting up the tool:
 The required python dependencies are packed into `reqirements.txt`. Run the following command to instlal these dependencies.
 
-``` pip install reqirements.txt```
+``` pip install requirements.txt```
 
 _Note: The tool needs Python version higher than 2.6. While setting up on a Linux machine, you can use `install_python_dev_linux.sh` script to install the dev version of python 2.7_
 
