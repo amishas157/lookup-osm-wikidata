@@ -1,6 +1,12 @@
 # lookup-osm-wikidata
 This tool helps in finding various language translations of a osm feature from its corresponding wikidata item, given its feature [ID](http://wiki.openstreetmap.org/wiki/ID) and feature [Type](https://wiki.openstreetmap.org/wiki/Elements). 
 
+## Setting up the tool:
+The required python dependencies are packed into `reqirements.txt`. Run the following command to instlal these dependencies.
+
+``` pip install requirements.txt```
+
+_Note: The tool needs Python version higher than 2.6. While setting up on a Linux machine, you can use `install_python_dev_linux.sh` script to install the dev version of python 2.7_
 
 This repository has two scripts that help matching OSM features to Wikidata, and get metadata like translations from Wikidata API.
 
@@ -29,6 +35,9 @@ The CSV has the following log information that might be useful to debug:
 - `No wikidata/wikipedia`: None of wikidata/wikipedia present
 - `Dynamosm request failure`: API to query osm failed
 - `No OSM Id/ Type`: Either of osm_id or osm_type not present in input
+
+#### Example syntax
+`python osm.py name:zh name:es postal_code population`
 
 ## wiki.py
 
