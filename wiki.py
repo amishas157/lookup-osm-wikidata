@@ -51,6 +51,10 @@ def hasWikidata( wikidataId, l ):
         except:
             l['wiki:logs'] += "No " + label +  " label,"
     try:
+        l['instance'] = datawiki["entities"][wikidataId]["claims"]["P31"][0]["mainsnak"]["datavalue"]["value"]["id"]
+    except:
+        l['instance'] = ""
+    try:
         l['wiki:label:en'] = datawiki["entities"][wikidataId]["labels"]["en"]["value"]
     except:
         l['wiki:label:en'] = ""
@@ -58,10 +62,9 @@ def hasWikidata( wikidataId, l ):
         l['wiki:wikipedia:en'] = datawiki["entities"][wikidataId]["sitelinks"]["enwiki"]["title"]
     except:
         l['wiki:wikipedia:en'] = ""
-
     try:
-        latitude = datawiki["entities"][wikidataId]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["latitude"]
-        longitude = datawiki["entities"][wikidataId]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["longitude"]
+        l['latitude'] = datawiki["entities"][wikidataId]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["latitude"]
+        l['longitude'] = datawiki["entities"][wikidataId]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["longitude"]
 
         geom_geojson = shapely.geometry.shape({"type": "Point", "coordinates": [longitude, latitude]})
         d = ast.literal_eval(l['osm:geometry'])
@@ -80,7 +83,7 @@ def hasWikidata( wikidataId, l ):
 fr = open('output.json','r')
 fw = open('finalOutput.json','w')
 count = 0
-fieldnames.extend(["wiki:logs", "wiki:wikidata", "wiki:label:en", "wiki:wikipedia:en", "wiki:Distance"])
+fieldnames.extend(["wiki:logs", "wiki:wikidata", "wiki:label:en", "wiki:wikipedia:en", "wiki:wikipedia:vi", "longitude", "latitude", "wiki:Distance", "instance"])
 for label in labels:
     fieldnames.extend(['wiki:label:'+label])
 
